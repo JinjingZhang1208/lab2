@@ -1,0 +1,14 @@
+1.Explain what you think the worst-case big O complexity and the best-case big O complexity of bubble sort is as implemented in our code. Give reasons for why you think that is the big O complexity for each case.
+The worst-case big O complexity of bubble sort is O(n^2), and the best-case big O complexity is O(n).In the worst-case scenario, bubble sort requires n * (n-1) / 2 comparisons and n * (n-1) / 2 swaps to sort the array. In the best-case happens when the array is already sorted, and the algorithm makes only one pass through the array without any swaps.
+
+2.Is there a more efficient way to write bubble sort that changes the performance in the best case? If so, describe (in general terms, we don't need the exact C code) how that implementation of bubble sort would be different. 
+I think there is a more efficient way to write bubble sort hat changes the performance in the best case. The optimization involves introducing a flag to check whether any swaps were made in a pass. If no swaps are made during a pass, it indicates that the array is already sorted, and the algorithm can terminate early.
+
+3.Explain what you think the worst-case big O complexity and the best-case big O complexity of selection sort is as you've implemented it. Why do you think that?
+Worst-Case Complexity (O(n^2)), Best-Case Complexity (O(n^2)). In the worst-case scenario, selection sort makes the same number of comparisons and swaps regardless of the initial order of the elements. In the best case, the array is already sorted. However, even in the best case, selection sort must perform the same number of comparisons and swaps because it systematically selects the minimum (or maximum) element from the unsorted portion and swaps it with the first unsorted element. This process repeats until the entire array is sorted.
+
+4.Does selection sort require any additional storage (i.e. did you have to allocate any extra memory to perform the sort?) beyond the original array?
+No, the selection sort algorithm as implemented in the provided code does not require any additional storage beyond the original array. The sorting is done in-place, meaning that the algorithm sorts the elements within the existing array without allocating extra memory for temporary storage or creating additional data structures.
+
+5.Explain what you think big O complexity of sorting algorithm that is built into the C libraries is. Why do you think that? Do a little bit of research to try to answer this one - it's a preview of the faster sorts we'll see soon. 
+The big O complexity of the sorting algorithm built into the C libraries, such as mergesort, is typically O(n log n) in the average and worst cases. MergeSort works by recursively dividing the array into halves, sorting each half, and then merging the sorted halves. Its stability and consistent performance make it suitable for various scenarios.
