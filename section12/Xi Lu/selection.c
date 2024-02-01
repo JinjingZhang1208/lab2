@@ -1,6 +1,3 @@
-// Compile with: clang -g selection.c -o selection
-// Run with: ./selection
-
 #include <stdio.h> // Include file for standard input/output
 #include <stdlib.h> // so we can use atoi()
 #include <time.h>   // so we can use time_t and clock_gettime()
@@ -10,8 +7,6 @@
 #endif
 
 // =============== Helper Functions ===============
-// Swaps two numbers in an array
-// Input: The 'address of' an index into an array for positions in an array.
 void swap(int* a, int* b){
     // TODO: Swap two integers in an array.
     int temp = *a;
@@ -19,14 +14,7 @@ void swap(int* a, int* b){
     *b = temp;
 }
 
-// Returns the minimum integer from a range in an array
-// Input: array - An array of integers
-//        start - Where to start looking in an array
-//        stop - End of where to search. Typically the 'size' of the array.
-// Output: The index in an array of the minimum value between a range [start,stop]
 int findMinimum(int* array, int start, int stop){
-    // TODO: Iterate through a subset of the array and find the minimum value.
-    //       Return the index of that minimum value.
     int min_index = start;
     for (int i = start + 1; i < stop; i++){
         if (array[i] < array[min_index]){
@@ -36,8 +24,6 @@ int findMinimum(int* array, int start, int stop){
     return min_index; // TODO: Modify this to return the
 }
 
-// Input: A pointer to an array (i.e. the array itself points to the first index)
-//        The size of the array (Because we do not know how big the array is automatically)
 void printIntArray(int* array, unsigned int size){
   unsigned int i; // Note: 'unsigned int' is a datatype for storing positive integers.
   for(i = 0 ; i < size ; i++){
@@ -47,18 +33,7 @@ void printIntArray(int* array, unsigned int size){
 }
 
 // =============== Sort Function ===============
-// Provided below is a sort function. I have also
-// provided a template for how to document functions
-// to help organize your code.
-// Name: sort
-// Input(s):
-//  - 'array' is a pointer to an integer address. 
-//     This is the start of some 'contiguous block of memory' that we will sort.
-//  - 'size' tells us how big the array of data is we are sorting.
-// Output: No value is returned, but 'array' should be modified to store a sorted array of numbers.
 void sortIntegers(int* array, unsigned int size){
-    // TODO: Implement selection sort
-    for (unsigned int i = 0; i < size - 1; i++){
         int min_index = findMinimum(array, i , size);
         swap(&array[min_index],&array[i]);
     }
@@ -106,7 +81,6 @@ int main(int argc, char* argv[]){
   // Generate a random seed
   time_t t;
   srand((unsigned)time(&t));
-  // Allocate memory
   int* random = (int*)malloc(sizeof(int)*size);
 
   // Populate our test data set
@@ -119,13 +93,9 @@ int main(int argc, char* argv[]){
   // printf("Before the sort: ");
   // printIntArray(random, size);
 
-  // Setup timers  
   struct timespec begin, end;
-  // Get the time before we start
   clock_gettime(CLOCK_MONOTONIC_RAW, &begin);
-  // Perform the sort
   sortIntegers(random,size);
-  // Get the time after we are done
   clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 
   double time_taken = (end.tv_nsec - begin.tv_nsec) / 1000000000.0 +

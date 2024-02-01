@@ -1,7 +1,3 @@
-// Compile with: clang -g bubblesort.c -o bubblesort
-// Run with: ./bubblesort
-
-// C-Standard Libraries
 #include <stdio.h> // Include file for standart input/output
 #include <stdlib.h>
 #include <time.h> // Time functions
@@ -11,22 +7,13 @@
 #endif
 
 // =============== Helper Functions ===============
-// Swaps two numbers in an array
-// Input: The 'address of' an index into an array for positions in an array.
 void swap(int* a, int* b) {
-    int temp = *a; // Store the value at address a in a temporary variable
-    *a = *b;       // Assign the value at address b to the location of a
-    *b = temp;     // Assign the value stored in the temporary variable to the location of b
+    int temp = *a; 
+    *a = *b;       
+    *b = temp;    
 }
 
-// Name:    printIntArray
-// Desc:    Prints out an integer array
-// param(1):A pointer to an array (i.e. the array
-//          itself points to the first index)
-// param(2) The size of the array (Because we do
-//          not know how big the array is automatically)
 void printIntArray(int* array, unsigned int size) {
-    // Note: 'unsigned int' is a datatype for storing positive integers.
     unsigned int i;
     for (i = 0; i < size; i = i + 1) {
         printf("%d ", array[i]);
@@ -35,28 +22,10 @@ void printIntArray(int* array, unsigned int size) {
 }
 
 // =============== Sort Function ===============
-// Name: bubblesort
-// Desc: O(n^2) comparison sort
-// param(1): 'array' is a pointer to an integer address.
-//           This is the start of some 'contiguous block of memory'
-//           that we will sort.
-// param(2)  'size' tells us how big the array of
-//           data is we are sorting.
-// Output:   No value is returned, but 'array' should
-//           be modified to store a sorted array of size.
 void bubblesort(int* array, unsigned int size) {
-    // Iterate through the array multiple times
     for (int i = 0; i < size - 1; i++) {
-        // Within each iteration, iterate through the array again to compare adjacent elements
-        // This inner loop performs the core logic of the bubble sort algorithm
-        // It compares adjacent elements and swaps them if they are out of order
-        // After each iteration of the outer loop, the largest unsorted element 'bubbles up' to its correct position
-        // As a result, subsequent iterations of the outer loop can ignore the sorted portion of the array
         for (int j = 0; j < size - 1; j++) {
-            // Compare the current element with the next element
-            // If the current element is greater than the next element, they are out of order
             if (array[j] > array[j + 1]) {
-                // Swap the current element with the next element to correct the order
                 swap(&array[j], &array[j + 1]); // Swap the current element with the next element if they are out of order
             }
         }

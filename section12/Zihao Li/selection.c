@@ -1,6 +1,3 @@
-// Compile with: clang -g selection.c -o selection
-// Run with: ./selection
-
 #include <stdio.h> // Include file for standard input/output
 #include <stdlib.h> // so we can use atoi()
 #include <time.h>   // so we can use time_t and clock_gettime()
@@ -10,32 +7,22 @@
 #endif
 
 // =============== Helper Functions ===============
-// Swaps two numbers in an array
-// Input: The 'address of' an index into an array for positions in an array.
 void swap(int* a, int* b){
-    int temp = *a; // Store the value at address a in a temporary variable
-    *a = *b;       // Replace the value at address a with the value at address b
-    *b = temp;     // Replace the value at address b with the value stored in the temporary variable
+    int temp = *a; 
+    *a = *b;      
+    *b = temp;     
 }
 
-// Returns the minimum integer from a range in an array
-// Input: array - An array of integers
-//        start - Where to start looking in an array
-//        stop - End of where to search. Typically the 'size' of the array.
-// Output: The index in an array of the minimum value between a range [start,stop]
 int findMinimum(int* array, int start, int stop){
     int minIndex = start; // Set the initial minimum index to the start index
-    // Iterate through the specified range in the array
     for (int i = start + 1; i < stop; i++) { 
         if (array[i] < array[minIndex]) {   // Check if the current element is smaller than the current minimum
-            minIndex = i; // Update the minimum index if a smaller element is found
-        }
+            minIndex = i; 
+       }
     }
-    return minIndex; // Return the index of the minimum value
+    return minIndex; 
 }
 
-// Input: A pointer to an array (i.e. the array itself points to the first index)
-//        The size of the array (Because we do not know how big the array is automatically)
 void printIntArray(int* array, unsigned int size){
   unsigned int i; // Note: 'unsigned int' is a datatype for storing positive integers.
   for(i = 0 ; i < size ; i++){
@@ -45,15 +32,6 @@ void printIntArray(int* array, unsigned int size){
 }
 
 // =============== Sort Function ===============
-// Provided below is a sort function. I have also
-// provided a template for how to document functions
-// to help organize your code.
-// Name: sort
-// Input(s):
-//  - 'array' is a pointer to an integer address. 
-//     This is the start of some 'contiguous block of memory' that we will sort.
-//  - 'size' tells us how big the array of data is we are sorting.
-// Output: No value is returned, but 'array' should be modified to store a sorted array of numbers.
 void sortIntegers(int* array, unsigned int size){
         for (int i = 0; i < size - 1; i++) { // Iterate through the array starting from the first element
         int minIndex = findMinimum(array, i, size); // Find the index of the minimum value in the unsorted portion of the array

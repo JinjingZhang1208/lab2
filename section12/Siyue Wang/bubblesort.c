@@ -1,7 +1,4 @@
-// Compile with: clang -g bubblesort.c -o bubblesort
-// Run with: ./bubblesort
 
-// C-Standard Libraries
 #include <stdio.h> // Include file for standart input/output
 #include <stdlib.h>
 #include <time.h> // Time functions
@@ -11,26 +8,13 @@
 #endif
 
 // =============== Helper Functions ===============
-// Swaps two numbers in an array
-// Input: The 'address of' an index into an array for positions in an array.
 void swap(int* a, int* b) {
-    // TODO: Swap two integers in an array.
-    //create a temporary variable and assign it the value of the first int
     int temp = *a;
-    // swap the value of the two ints (this would erase value of b, which is why we need the temp to store its value)
     *a = *b;
-    // assign the value of the temporary variable to b, finishing the swap
     *b = temp;
 }
 
-// Name:    printIntArray
-// Desc:    Prints out an integer array
-// param(1):A pointer to an array (i.e. the array
-//          itself points to the first index)
-// param(2) The size of the array (Because we do
-//          not know how big the array is automatically)
 void printIntArray(int* array, unsigned int size) {
-    // Note: 'unsigned int' is a datatype for storing positive integers.
     unsigned int i;
     for (i = 0; i < size; i = i + 1) {
         printf("%d ", array[i]);
@@ -39,23 +23,10 @@ void printIntArray(int* array, unsigned int size) {
 }
 
 // =============== Sort Function ===============
-// Name: bubblesort
-// Desc: O(n^2) comparison sort
-// param(1): 'array' is a pointer to an integer address.
-//           This is the start of some 'contiguous block of memory'
-//           that we will sort.
-// param(2)  'size' tells us how big the array of
-//           data is we are sorting.
-// Output:   No value is returned, but 'array' should
-//           be modified to store a sorted array of size.
 void bubblesort(int* array, unsigned int size) {
-   //the first element to compare 
     for (int i = 0; i < size - 1; i++) {
-        // the second element to compare
         for (int j = 0; j < size - 1; j++) {
-            // if the first element is larger than the second element
             if (array[j] > array[j + 1]) {
-                // a swap is performed
                 swap(&array[j], &array[j + 1]);
             }
         }
@@ -97,17 +68,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Convert the argument of the program into an integer
     const int size = atoi(argv[1]);
-    // Generate a random seed
     time_t t;
     srand((unsigned)time(&t));
-    // Allocate memory
     int* random = (int*)malloc(sizeof(int) * size);
 
-    // Populate our test data set
     for (int i = 0; i < size; i++) {
-        // Generate random values from 0 to 99
         random[i] = rand() % size;
     }
 
@@ -115,13 +81,9 @@ int main(int argc, char* argv[]) {
     // printf("Before the sort: ");
     // printIntArray(random, size);
 
-    // Setup timers
     struct timespec begin, end;
-    // Get the time before we start
     clock_gettime(CLOCK_MONOTONIC_RAW, &begin);
-    // Perform the sort
     bubblesort(random, size);
-    // Get the time after we are done
     clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 
     double time_taken = (end.tv_nsec - begin.tv_nsec) / 1000000000.0 + (end.tv_sec - begin.tv_sec);
@@ -131,7 +93,6 @@ int main(int argc, char* argv[]) {
     // printf("After the sort: ");
     // printIntArray(random, size);
 
-    // Free our random array
     free(random);
 
 #endif
