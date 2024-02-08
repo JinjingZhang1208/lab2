@@ -3,19 +3,17 @@
 #include <time.h> // Time functions
 
 #ifndef EXPERIMENT
-#define EXPERIMENT 1 // we will use this for Part 4 of this lab
+#define EXPERIMENT 0 // we will use this for Part 4 of this lab
 #endif
 
 // =============== Helper Functions ===============
 void swap(int* a, int* b) {
-    // TODO: Swap two integers in an array.
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
 void printIntArray(int* array, unsigned int size) {
-    // Note: 'unsigned int' is a datatype for storing positive integers.
     unsigned int i;
     for (i = 0; i < size; i = i + 1) {
         printf("%d ", array[i]);

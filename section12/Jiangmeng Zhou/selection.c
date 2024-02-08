@@ -3,7 +3,7 @@
 #include <time.h>   // so we can use time_t and clock_gettime()
 
 #ifndef EXPERIMENT
-#define EXPERIMENT 1 // we will use this for Part 4 of this lab
+#define EXPERIMENT 0 // we will use this for Part 4 of this lab
 #endif
 
 // =============== Helper Functions ===============
