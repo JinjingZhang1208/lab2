@@ -13,7 +13,7 @@
 //        The size of the array (Because we do not know how big the array is automatically)
 void printIntArray(int* array, unsigned int size) {
     unsigned int i; // Note: 'unsigned int' is a datatype for storing positive integers.
-    for (i = 0; i < size; i++) {
+    for (i = size - 1; i > 0; i--) {
         printf("%d ", array[i]);
     }
     printf("\n");
@@ -40,11 +40,8 @@ int partition(int arr[], int low, int high) {
 	int i = (low - 1); // index of the smaller element
 
 	for (int j = low; j < high; j++) {
-		// if the current element is smallar than or equal to the pivot
 		if (arr[j] <= pivot) {
-		// increment the index of the smaller element
 		i++;
-		// swap the element arr[i] with arr[j]
 		int temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
@@ -58,15 +55,10 @@ int partition(int arr[], int low, int high) {
 }
 
 void quickSort(int arr[], int low, int high) {
-	// base condition for the recursion, check if the starting index is less than the ending index.
-	// if false, which means array or subarray has 0/1 element and do not need further sort.
 	if (low < high) {
 		int pi = partition(arr, low, high); //pi is the partition index
 		
-		//all elements less than a chosen pivot are moved before the pivot,
-		//and the greater elements are moved after it.
 		quickSort(arr, low, pi - 1);
-		// this recutsion call will sort the right part of array until the base condition is met
 		quickSort(arr, pi + 1, high);
 	}
 }

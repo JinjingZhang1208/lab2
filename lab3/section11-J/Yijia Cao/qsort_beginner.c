@@ -6,7 +6,7 @@
 #include <time.h>   // so we can use time_t and clock_gettime()
 
 #ifndef EXPERIMENT
-#define EXPERIMENT 1 // we will use this for the complexity experiments
+#define EXPERIMENT 0 // we will use this for the complexity experiments
 #endif
 
 // Input: A pointer to an array (i.e. the array itself points to the first index)
@@ -39,7 +39,7 @@ In addition, write one comment per line of code explaining how that line is
 
 int partition(int arr[], int low, int high) {
     int pivot = arr[high]; // pivot to be the last element in the current segment of the array. This value will be used to divide the array into two parts.
-    int leftIndex = (low - 1); // initialized to one less than the start of the segment. rightmost position of the array segment where values are less than the pivot.
+    int leftIndex = low; // initialized to one less than the start of the segment. rightmost position of the array segment where values are less than the pivot.
 
     for (int rightIndex = low; rightIndex <= high - 1; rightIndex++) {
         if (arr[rightIndex] <= pivot) {
@@ -49,11 +49,11 @@ int partition(int arr[], int low, int high) {
             arr[rightIndex] = temp;
         } // close for loop
     }
-    int temp = arr[leftIndex + 1]; // Swap the pivot with the first element thats greater than pivot, between small and big
-    arr[leftIndex + 1] = arr[high];
+    int temp = arr[leftIndex]; // Swap the pivot with the first element thats greater than pivot, between small and big
+    arr[leftIndex] = arr[high];
     arr[high] = temp;
 
-    return leftIndex + 1; //which is the index of the pivot element. determine the next segments to partition and sort
+    return leftIndex; //which is the index of the pivot element. determine the next segments to partition and sort
 } //END
 
 void quickSort(int arr[], int low, int high) {

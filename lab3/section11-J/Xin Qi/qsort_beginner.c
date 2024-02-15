@@ -10,7 +10,7 @@
 
 void printIntArray(int* array, unsigned int size) {
     unsigned int i; // Note: 'unsigned int' is a datatype for storing positive integers.
-    for (i = 0; i < size; i++) {
+    for (i = size - 1; i > 0; i--) {
         printf("%d ", array[i]);
     }
     printf("\n");
